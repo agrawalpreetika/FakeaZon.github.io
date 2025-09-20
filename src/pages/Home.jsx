@@ -96,7 +96,7 @@ export const Home = () => {
     return (
         <>
             <Navbar />
-            <main className="pt-16 bg-gray-100 min-h-screen pb-10">
+            <main className="pt-14 bg-gray-100 min-h-screen pb-10">
 
                 {/* Hero Section */}
                 <section className="relative bg-gradient-to-r from-pink-500 to-pink-400 text-white flex flex-col items-center justify-center text-center px-6 py-32 md:py-48 overflow-hidden">

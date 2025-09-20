@@ -11,7 +11,7 @@ export const WishList = () => {
     return (
         <>
             <Navbar />
-            <main className="min-h-screen bg-gray-100 mt-16 py-10 px-5">
+            <main className="min-h-screen bg-gray-100 mt-14 py-10 px-5">
                 {/* Page Title */}
                 <h1 className="mb-10 text-center text-3xl font-bold">My Wishlist</h1>
 
@@ -29,14 +29,12 @@ export const WishList = () => {
                     /* Responsive Product Flexbox */
                     <div
                         className="
-              flex flex-wrap gap-6 justify-center
-              lg:justify-start
-            "
+                flex flex-wrap gap-6 justify-center"
                     >
                         {wishList.map((product) => (
                             <div
                                 key={product._id}
-                                className="flex-grow sm:flex-grow-0 sm:w-[48%] md:w-[31%] lg:w-[23%] xl:w-[18%] max-w-xs"
+                                className="flex-grow j sm:flex-grow-0 sm:w-[48%] md:w-[33%] lg:w-[23%] xl:w-[18%] max-w-xs"
                             >
                                 <WishListProduct product={product} />
                             </div>

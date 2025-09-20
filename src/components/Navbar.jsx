@@ -400,7 +400,7 @@ export const Navbar = () => {
                 </nav>
 
                 {/* Icons */}
-                <div className="flex items-center gap-3 sm:gap-6">
+                <div className="flex items-center gap-4 sm:gap-6">
                     {/* Wishlist */}
                     <div className="relative">
                         <Heart
@@ -408,7 +408,7 @@ export const Navbar = () => {
                             className="w-6 h-6 sm:w-7 sm:h-7 cursor-pointer hover:text-red-600 transition"
                         />
                         {wishList.length > 0 && login.token && (
-                            <span className="absolute -top-2 -right-2 bg-pink-600 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full shadow">
+                            <span className="absolute  -top-1.5 -right-1.5 sm:-top-2 sm:-right-2 bg-pink-600 text-white text-xs font-bold w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center rounded-full shadow">
                                 {wishList.length}
                             </span>
                         )}
@@ -421,7 +421,7 @@ export const Navbar = () => {
                             className="w-6 h-6 sm:w-7 sm:h-7 cursor-pointer hover:text-blue-600 transition"
                         />
                         {cart.length > 0 && login.token && (
-                            <span className="absolute -top-2 -right-2 bg-pink-600 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full shadow">
+                            <span className="absolute -top-1.5 -right-1.5 sm:-top-2 sm:-right-2 bg-pink-600 text-white text-xs font-bold w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center rounded-full shadow">
                                 {cart.length}
                             </span>
                         )}
@@ -479,7 +479,7 @@ export const Navbar = () => {
                     {/* Mobile Menu Button */}
                     <button
                         onClick={() => setMenuOpen(!menuOpen)}
-                        className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition"
+                        className="md:hidden p-1 rounded-lg hover:bg-gray-100 transition"
                     >
                         <Menu className="w-6 h-6" />
                     </button>

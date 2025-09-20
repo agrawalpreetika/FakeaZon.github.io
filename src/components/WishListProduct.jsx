@@ -25,9 +25,9 @@ export const WishListProduct = ({ product }) => {
 
     return (
 
-        <div className="relative group my-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
-            <a className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" >
-                <img className="peer absolute top-0 right-0 h-full w-full object-cover" src={product.image} alt="product image" />
+        <div className="relative group my-5 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+            <a onClick={() => navigate(`/products/${product._id}`)} className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" >
+                <img className="cursor-pointer peer absolute top-0 right-0 h-full w-full object-cover" src={product.image} alt="product image" />
                 {/* {product.images[2] && <img className="peer absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0 peer-hover:right-0" src={product.images[1]} alt="product image" />} */}
                 {/* <div className="absolute  bottom-0 mb-4 flex space-x-4 w-full justify-center">
                 <div className="rounded-full h-3 w-3 bg-gray-200 border-2 border-white"></div>
@@ -38,15 +38,18 @@ export const WishListProduct = ({ product }) => {
                 {/* <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">39% OFF</span>  */}
             </a>
             <div className="mt-4 px-5 pb-5">
-                <a >
-                    <h5 className="text-[18px] tracking-tight text-slate-900">{product.title}</h5>
-                </a>
-                <div className="mt-2 mb-5 flex items-center justify-between">
-                    <p>
-                        <span className="text-3xl font-bold text-slate-900">${product.discountedPrice}</span>
-                        <span className="text-sm text-slate-900 line-through">${product.price}</span>
-                    </p>
+                <div onClick={() => navigate(`/products/${product._id}`)} className="cursor-pointer">
+                    <a >
+                        <h5 className="text-[18px] tracking-tight text-slate-900">{product.title}</h5>
+                    </a>
+                    <div className="mt-2 mb-5 flex items-center justify-between">
+                        <p>
+                            <span className="text-2xl mr-2 font-bold text-pink-600">${product.discountedPrice}</span>
+                            <span className="text-md text-slate-900 line-through">${product.price}</span>
+                        </p>
+                    </div>
                 </div>
+
 
                 {/* Add to Cart */}
                 <button
@@ -62,7 +65,7 @@ export const WishListProduct = ({ product }) => {
                 </button>
 
                 {/* Remove from Wishlist */}
-                <button className='absolute top-3 right-3 rounded-full bg-white p-2 text-black shadow-md transition-colors duration-200 hover:cursor-pointer hover:bg-pink-100 hover:text-pink-600' onClick={() => removeFromWishList(product._id)}>
+                <button className='absolute border-gray-200 border-1 top-3 right-3 rounded-full bg-white p-2 text-black shadow-lg transition-colors duration-200 hover:cursor-pointer hover:bg-pink-100 hover:text-pink-600' onClick={() => removeFromWishList(product._id)}>
                     <DeleteOutlineIcon />
                 </button>
 

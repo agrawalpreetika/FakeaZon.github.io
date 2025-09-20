@@ -8,6 +8,8 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import StarIcon from "@mui/icons-material/Star";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
 
 export const ProductDetails = () => {
     const { id } = useParams();
@@ -17,6 +19,7 @@ export const ProductDetails = () => {
     const { cart, addToCart } = useCart();
     const { wishList, addToWishList } = useWishList();
     const navigate = useNavigate();
+
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -62,16 +65,17 @@ export const ProductDetails = () => {
     return (
         <>
             <Navbar />
-            <div className="min-h-screen bg-gray-100 flex justify-center items-start py-10 px-5 md:px-20 mt-16">
+            <div className="min-h-screen bg-gray-100 flex justify-center items-start py-10 px-5 md:px-20 mt-14">
                 <div className="bg-white rounded-2xl shadow-2xl  w-full sm:w-5/6 md:w-7/6 flex flex-col md:flex-row gap-10 p-10 hover:shadow-3xl transition-shadow duration-300">
 
                     {/* Product Image */}
-                    <div className="flex lg:w-1/2 justify-center items-start relative">
+                    <div className="flex lg:w-1/2 justify-center items-start relative group">
                         <img
                             src={product.image}
                             alt={product.title}
                             className="w-full max-w-md rounded-xl object-cover hover:scale-102 transition-transform duration-300"
                         />
+
                         {product.stock < 5 && (
                             <span className="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
                                 Only {product.stock} left!
@@ -88,11 +92,19 @@ export const ProductDetails = () => {
                     <div className=" md:w-1/2 flex flex-col gap-6">
                         <h1 className="text-4xl font-extrabold text-gray-800 hover:text-pink-600 transition-colors duration-200">{product.title}</h1>
 
-                        {/* Rating */}
-                        <div className="flex items-center gap-3">
-                            <span className="text-yellow-400 text-lg">{'★'.repeat(product.rating)}</span>
-                            <span className="text-gray-500">{product.rating} / 5</span>
+
+                        {/* Rating with stars */}
+                        <div className="flex items-center gap-1">
+                            {[...Array(5)].map((_, i) =>
+                                i < Math.round(product.rating) ? (
+                                    <StarIcon key={i} className="text-yellow-400" />
+                                ) : (
+                                    <StarBorderIcon key={i} className="text-yellow-400" />
+                                )
+                            )}
+                            <span className="text-gray-500 ml-2">{product.rating} / 5</span>
                         </div>
+
 
                         {/* Price */}
                         <div className="flex items-center gap-4">
@@ -155,3 +167,4 @@ export const ProductDetails = () => {
         </>
     );
 };
+

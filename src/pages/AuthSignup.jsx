@@ -5,7 +5,7 @@ export const AuthSignup = () => {
     return (
         <>
             <Navbar />
-            <main className="mt-16 flex justify-center items-center min-h-screen  bg-gray-100">
+            <main className="mt-13 flex justify-center items-center min-h-screen  bg-gray-100">
                 <Signup />
             </main>
         </>

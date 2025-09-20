@@ -37,6 +37,8 @@ import { AuthLogin } from './pages/AuthLogin'
 import { AuthSignup } from './pages/AuthSignup'
 import { ProtectedRoute } from './components/ProtectedRoute' // adjust path if needed
 import { ProductDetails } from './pages/ProductDetails'
+import { About } from './pages/About'
+import { Checkout } from './pages/Checkout'
 
 function App() {
   return (
@@ -62,6 +64,12 @@ function App() {
       <Route path="/auth/login" element={<AuthLogin />} />
       <Route path="/auth/signup" element={<AuthSignup />} />
       <Route path="/products/:id" element={<ProductDetails />} /> {/* New route for product details */}
+      <Route path="/about" element={<About />} />
+      <Route path="/checkout" element={
+        <ProtectedRoute>
+          <Checkout />
+        </ProtectedRoute>
+      } />
     </Routes>
   )
 }

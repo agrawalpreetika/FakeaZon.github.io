@@ -111,7 +111,7 @@ export const ProductPage = () => {
                 setFilters={setFilters}
                 categories={categories}   // 🔹 pass dynamic categories
             />
-            <main className="flex-1 bg-gray-100 min-h-screen  md:ml-72 mt-16">
+            <main className="flex-1 bg-gray-100 min-h-screen  md:ml-72 mt-14">
 
 
 
