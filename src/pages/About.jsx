@@ -100,7 +100,7 @@ export const About = () => {
     return (
         <>
             <Navbar />
-            <div className="min-h-screen bg-gray-50 text-gray-800 pt-20">
+            <div className="min-h-screen bg-gray-50 text-gray-800 mt-14">
                 {/* Hero Section */}
                 <section className="relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-r from-pink-100 via-white to-pink-50"></div>

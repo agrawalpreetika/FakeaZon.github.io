@@ -101,7 +101,7 @@ export const Home = () => {
         <>
             <Navbar />
 
-            <main className="bg-gray-200 pb-5 mt-14">
+            <main className="bg-gray-100 pb-5 mt-14">
 
                 {/* Hero Section */}
                 <section className="relative bg-gray-900 text-white flex items-center justify-center text-center py-36 md:py-48 overflow-hidden">
@@ -135,7 +135,7 @@ export const Home = () => {
                                 <img
                                     src={cat.img}
                                     alt={cat.title}
-                                    className="w-full h-64 object-cover rounded-2xl group-hover:scale-110 transition-transform duration-500"
+                                    className="w-full h-64 object-cover rounded-2xl group-hover:scale-101 transition-transform duration-500"
                                 />
                                 <div className="absolute inset-0 bg-black/25 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
                                     <h3 className="text-2xl font-bold text-white">{cat.title}</h3>
@@ -164,7 +164,7 @@ export const Home = () => {
                 </section>
 
                 {/* Premium Modern Promo Section */}
-                <section className="my-20 relative bg-gradient-to-r from-gray-50 to-gray-100 py-15 md:py-22 px-6 md:px-16 rounded-3xl overflow-hidden shadow-md mx-6 md:mx-16 flex flex-col md:flex-row items-center gap-12">
+                <section className="my-20 relative bg-white py-15 md:py-22 px-6 md:px-16 rounded-3xl overflow-hidden shadow-md mx-6 md:mx-16 flex flex-col md:flex-row items-center gap-12">
                     {/* Text Content */}
                     <div className="md:w-2/3 flex flex-col justify-center space-y-4">
                         <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
