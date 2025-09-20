@@ -51,7 +51,7 @@ export const OrderConfirmModal = ({ isOpen, onClose, cart, formData, total, onCo
             onClose={onClose}
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm"
         >
-            <DialogPanel className="bg-white p-6 rounded-2xl shadow-2xl w-full max-w-3xl space-y-6 animate-fadeIn">
+            <DialogPanel className="bg-white p-6 rounded-2xl shadow-2xl max-h-[98vh] overflow-y-auto w-full max-w-3xl space-y-6 animate-fadeIn">
 
                 {/* Header */}
                 <div className="flex items-center justify-between">
