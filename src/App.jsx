@@ -1,33 +1,3 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'
-// import { Routes, Route, Link } from 'react-router-dom'
-// import { Home } from './pages/Home'
-// import { Cart } from './pages/Cart'
-// import { WishList } from './pages/WishList'
-// import { ProductPage } from './pages/ProductPage'
-// import { AuthLogin } from './pages/AuthLogin'
-
-
-
-// function App() {
-//   const [count, setCount] = useState(0)
-
-//   return (
-//     <Routes>
-//       <Route path="/" element={<Home />} />
-//       <Route path="/cart" element={<Cart />} />
-//       <Route path="/wishlist" element={<WishList />} />
-//       <Route path="/products" element={<ProductPage />} />
-//       <Route path="/auth/login" element={<AuthLogin />} />
-//     </Routes>
-//   )
-// }
-
-// export default App
-
-
 import { Routes, Route } from 'react-router-dom'
 import { Home } from './pages/Home'
 import { Cart } from './pages/Cart'
@@ -39,6 +9,9 @@ import { ProtectedRoute } from './components/ProtectedRoute' // adjust path if n
 import { ProductDetails } from './pages/ProductDetails'
 import { About } from './pages/About'
 import { Checkout } from './pages/Checkout'
+import { AdminProducts } from './pages/AdminProducts'
+import { OrderHistory } from './pages/OrderHistory'
+import { AdminLogin } from './pages/AdminLogin'
 
 function App() {
   return (
@@ -70,6 +43,13 @@ function App() {
           <Checkout />
         </ProtectedRoute>
       } />
+      <Route path="/orders" element={
+        <ProtectedRoute>
+          <OrderHistory />
+        </ProtectedRoute>
+      } />
+      <Route path="/admin/login" element={<AdminLogin />} />
+      <Route path="/admin/products" element={<AdminProducts />} />
     </Routes>
   )
 }
