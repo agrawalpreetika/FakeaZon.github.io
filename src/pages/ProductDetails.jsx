@@ -1,4 +1,5 @@
 import { Navbar } from "../components/Navbar";
+import { getProductById } from "../api/getAllProducts";
 import { useCart } from "../context/cart-context";
 import { useWishList } from "../context/wishlist-context";
 import { findProductInWishList } from "../utils/findProductInWishlist";
@@ -24,8 +25,7 @@ export const ProductDetails = () => {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const res = await fetch(`https://fakestoreapiserver.reactbd.org/api/products/${id}`);
-                const data = await res.json();
+                const data = await getProductById(id);
                 setProduct(data);
             } catch (error) {
                 console.error("Error fetching product:", error);
