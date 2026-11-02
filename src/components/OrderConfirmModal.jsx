@@ -1,54 +1,24 @@
-// import { Dialog } from "@headlessui/react";
-
-// export const OrderConfirmModal = ({ isOpen, onClose, cart, formData, total, onConfirm }) => {
-//     return (
-//         <Dialog open={isOpen} onClose={onClose} className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30">
-//             <Dialog.Panel className="bg-white p-6 rounded-lg shadow-lg w-full max-w-3xl space-y-4">
-//                 <Dialog.Title className="text-2xl font-bold">Confirm Your Order</Dialog.Title>
-
-//                 <div>
-//                     <h3 className="font-semibold">Shipping Info</h3>
-//                     <p>{formData.name}</p>
-//                     <p>{formData.phone}</p>
-//                     <p>{formData.email}</p>
-//                     <p>{formData.address}</p>
-//                 </div>
-
-//                 <div>
-//                     <h3 className="font-semibold">Order Items</h3>
-//                     <ul className="space-y-2">
-//                         {cart.map(item => (
-//                             <li key={item._id} className="flex justify-between">
-//                                 <span>{item.title} x {item.quantity}</span>
-//                                 <span>${item.discountedPrice * item.quantity}</span>
-//                             </li>
-//                         ))}
-//                     </ul>
-//                 </div>
-
-//                 <div className="flex justify-between font-bold">
-//                     <span>Total:</span>
-//                     <span>${total}</span>
-//                 </div>
-
-//                 <div className="flex justify-end gap-2">
-//                     <button onClick={onClose} className="px-4 py-2 rounded border hover:bg-gray-100">Cancel</button>
-//                     <button onClick={onConfirm} className="px-4 py-2 rounded bg-green-600 text-white hover:bg-green-700">Confirm Order</button>
-//                 </div>
-//             </Dialog.Panel>
-//         </Dialog>
-//     );
-// };
-
-
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { CheckCircle, X } from "lucide-react";
 
-export const OrderConfirmModal = ({ isOpen, onClose, cart, formData, total, onConfirm }) => {
+export const OrderConfirmModal = ({
+    isOpen,
+    onClose,
+    cart,
+    formData,
+    subtotal,
+    shippingFee,
+    discount,
+    couponCode,
+    total,
+    onConfirm,
+    isSubmitting,
+    error,
+}) => {
     return (
         <Dialog
             open={isOpen}
-            onClose={onClose}
+            onClose={isSubmitting ? () => {} : onClose}
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm"
         >
             <DialogPanel className="bg-white p-6 rounded-2xl shadow-2xl max-h-[98vh] overflow-y-auto w-full max-w-3xl space-y-6 animate-fadeIn">
@@ -61,7 +31,8 @@ export const OrderConfirmModal = ({ isOpen, onClose, cart, formData, total, onCo
                     </DialogTitle>
                     <button
                         onClick={onClose}
-                        className="p-2 rounded-full hover:bg-gray-100 transition"
+                        disabled={isSubmitting}
+                        className="p-2 rounded-full hover:bg-gray-100 transition disabled:opacity-40"
                     >
                         <X className="w-5 h-5 text-gray-600" />
                     </button>
@@ -96,25 +67,47 @@ export const OrderConfirmModal = ({ isOpen, onClose, cart, formData, total, onCo
                     </ul>
                 </div>
 
+                {/* Price Breakdown */}
+                <div className="space-y-1 text-sm">
+                    <div className="flex justify-between text-gray-600">
+                        <span>Subtotal</span><span>${subtotal.toFixed(2)}</span>
+                    </div>
+                    <div className="flex justify-between text-gray-600">
+                        <span>Shipping</span><span>${shippingFee.toFixed(2)}</span>
+                    </div>
+                    {discount > 0 && (
+                        <div className="flex justify-between text-green-600">
+                            <span>Discount {couponCode ? `(${couponCode})` : ""}</span>
+                            <span>-${discount.toFixed(2)}</span>
+                        </div>
+                    )}
+                </div>
+
                 {/* Total */}
                 <div className="flex justify-between items-center font-bold text-lg text-gray-800">
                     <span>Total:</span>
                     <span className="text-green-600">${total.toFixed(2)}</span>
                 </div>
 
+                {error && (
+                    <p className="text-red-600 text-sm bg-red-50 border border-red-200 rounded-lg p-3">{error}</p>
+                )}
+
                 {/* Actions */}
                 <div className="flex justify-end gap-3">
                     <button
                         onClick={onClose}
-                        className="px-5 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition"
+                        disabled={isSubmitting}
+                        className="px-5 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition disabled:opacity-40"
                     >
                         Cancel
                     </button>
                     <button
                         onClick={onConfirm}
-                        className="px-5 py-2 rounded-lg bg-green-600 text-white font-medium shadow hover:bg-green-700 transition"
+                        disabled={isSubmitting}
+                        className="px-5 py-2 rounded-lg bg-green-600 text-white font-medium shadow hover:bg-green-700 transition disabled:opacity-60"
                     >
-                        Confirm Order
+                        {isSubmitting ? "Placing order..." : "Confirm Order"}
                     </button>
                 </div>
             </DialogPanel>
