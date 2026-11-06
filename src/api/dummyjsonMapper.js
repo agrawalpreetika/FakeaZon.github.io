@@ -4,7 +4,15 @@
 // getAllCategoies.js and the local JSON snapshot fallback all stay in sync
 // without touching any component code.
 
+// A couple of DummyJSON category names read oddly as-is (e.g. "mobile-accessories"
+// covers things like smart speakers, not just phone cases) — override those
+// specific labels, humanize everything else automatically.
+const CATEGORY_LABEL_OVERRIDES = {
+    "mobile-accessories": "Gadgets",
+};
+
 const humanizeCategory = (slug = "") =>
+    CATEGORY_LABEL_OVERRIDES[slug] ||
     slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 
 // New-arrival badge: DummyJSON has no "isNew" field, so we derive one from

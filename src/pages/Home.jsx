@@ -2,7 +2,7 @@ import { Navbar } from "../components/Navbar";
 import { Link, useNavigate } from "react-router-dom";
 import men from '../assets/good-faces-IL1oeY0pN2k-unsplash.jpg';
 import women from '../assets/mike-von-2UTk-Nip5aM-unsplash.jpg';
-import kids from '../assets/the-nix-company-CkCUvwMXAac-unsplash.jpg';
+const electronics = 'https://images.unsplash.com/photo-1498049794561-7780e7231661';
 import { Footer } from '../components/Footer';
 
 export const Home = () => {
@@ -38,7 +38,7 @@ export const Home = () => {
                 <section className="py-24 px-6 md:px-16">
                     <h2 className="text-4xl font-bold text-gray-800 mb-12 text-center">Shop by Category</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-                        {[{ img: men, title: "Men" }, { img: women, title: "Women" }, { img: kids, title: "Kids" }].map(cat => (
+                        {[{ img: men, title: "Men" }, { img: women, title: "Women" }, { img: electronics, title: "Electronics" }].map(cat => (
                             <div
                                 key={cat.title}
                                 onClick={() => goToCategory(cat.title.toLowerCase())}
