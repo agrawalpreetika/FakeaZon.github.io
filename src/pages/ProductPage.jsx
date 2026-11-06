@@ -2,6 +2,7 @@ import { Navbar } from "../components/Navbar"
 import { getAllProducts } from "../api/getAllProducts"
 import { getAllCategories } from "../api/getAllCategoies"
 import { useEffect, useState } from "react"
+import { useLocation } from "react-router-dom"
 import { ProductCard } from "../components/ProductCard"
 import { useCart } from "../context/cart-context"
 import { FilterSidebar } from "../components/FilterSidebar"
@@ -9,23 +10,32 @@ import { SearchBar } from "../components/SearchBar"
 import { Filter } from "lucide-react"
 import { Footer } from "../components/Footer"
 
-
+// The homepage's Men/Women/Electronics cards each cover several real
+// DummyJSON categories, not one exact match — these are the category labels
+// exactly as dummyjsonMapper.js humanizes them.
+const HOME_CATEGORY_GROUPS = {
+    men: ["Mens Shirts", "Mens Shoes", "Mens Watches"],
+    women: ["Womens Dresses", "Womens Shoes", "Womens Watches", "Womens Bags", "Womens Jewellery"],
+    electronics: ["Gadgets", "Smartphones", "Tablets", "Laptops"],
+};
 
 export const ProductPage = () => {
+    const location = useLocation();
 
     const [products, setProducts] = useState([]) // data from api
     const [filtered, setFiltered] = useState([]); // filtered data
     const categories = [...new Set(products.map(p => p.category))];
-    // ["women", "men", "kids"]
 
-    const [filters, setFilters] = useState({
+    // Pre-select categories when arriving from a homepage shortcut
+    // (Home.jsx navigates here with { state: { category: "men" | "women" | "electronics" } }).
+    const [filters, setFilters] = useState(() => ({
         search: "",
-        categories: [],
+        categories: HOME_CATEGORY_GROUPS[location.state?.category] || [],
         priceMin: "",
         priceMax: "",
         sortBy: "",
         rating: 0,
-    });
+    }));
 
     const { cart } = useCart();
     const [loading, setLoading] = useState(true)   // 👈 loader state

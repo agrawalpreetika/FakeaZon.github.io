@@ -4,10 +4,10 @@ import { useLogin } from "../context/login-context";
 export const ProtectedRoute = ({ children }) => {
     const { login } = useLogin();
 
-    // Get token from context or localStorage (to survive refresh)
-    const token = login.token || localStorage.getItem("access_token");
-
-    if (!token.access_token) {
+    // login-context.jsx already rehydrates `login` from localStorage on load,
+    // so login.token is the single source of truth — no separate localStorage
+    // read needed here.
+    if (!login.token) {
         // not logged in → redirect to login page
         return <Navigate to="/auth/login" replace />;
     }
